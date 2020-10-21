@@ -65,6 +65,10 @@ public class UserServiceIntegrationTest {
         Assertions.assertThrows(ResourceNotFoundException.class,
                 () ->userService.getUser(99999));
 
+    }
+
+    @Test
+    public void getUsers_whenExistingUsers_thenReturnUsers(){
 
 
 
