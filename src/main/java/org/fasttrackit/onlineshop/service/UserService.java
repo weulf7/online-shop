@@ -52,15 +52,18 @@ public class UserService {
     public Page<User> getUsers(GetUsersRequest request, Pageable pageable){
         LOGGER.info("Retrieving users");
 
-        if (request.getPartialLastName()!=null && request.getPartialFirstName()!=null) {
-            return userRepository.findByFirstNameContainsOrLastNameContains(request.getPartialFirstName(), request.getPartialLastName(), pageable);
-        }else if (request.getPartialLastName()!=null){
-            return userRepository.findByLastNameContains(request.getPartialLastName(),pageable);
-        }else if (request.getPartialFirstName()!=null){
-            return userRepository.findByFirstNameContains(request.getPartialFirstName(),pageable);
-        }
+//        if (request.getPartialLastName()!=null && request.getPartialFirstName()!=null) {
+//            return userRepository.findByFirstNameContainsOrLastNameContains(request.getPartialFirstName(), request.getPartialLastName(), pageable);
+//        }else if (request.getPartialLastName()!=null){
+//            return userRepository.findByLastNameContains(request.getPartialLastName(),pageable);
+//        }else if (request.getPartialFirstName()!=null){
+//            return userRepository.findByFirstNameContains(request.getPartialFirstName(),pageable);
+//        }
 
-        return userRepository.findAll(pageable);
+
+//        return userRepository.findAll(pageable);
+
+        return userRepository.findByOptionalCriteria(request.getPartialFirstName(),request.getPartialLastName(),pageable);
     }
 
     public void deleteUser(long id) {
