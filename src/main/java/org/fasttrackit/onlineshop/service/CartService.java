@@ -2,8 +2,10 @@ package org.fasttrackit.onlineshop.service;
 
 import org.fasttrackit.onlineshop.domain.Cart;
 import org.fasttrackit.onlineshop.domain.User;
+import org.fasttrackit.onlineshop.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineshop.persistence.CartRepository;
-import org.fasttrackit.onlineshop.transfer.AddProductToCartRequest;
+import org.fasttrackit.onlineshop.transfer.cart.AddProductToCartRequest;
+import org.fasttrackit.onlineshop.transfer.cart.CartResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,19 @@ public class CartService {
         }
 
         return cartRepository.save(cart);
+    }
+
+    @Transactional
+    public CartResponse getCart(long userId){
+        LOGGER.info("Retrieving cart {}",userId);
+
+
+        Cart cart = cartRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cart with id " + userId + " does not exist"));
+
+        CartResponse cartResponse = new CartResponse();
+        cartResponse.setId(cart.getId());
+
+        return cartResponse;
     }
 }
