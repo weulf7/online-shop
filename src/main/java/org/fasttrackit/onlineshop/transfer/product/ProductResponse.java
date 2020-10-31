@@ -1,40 +1,26 @@
-package org.fasttrackit.onlineshop.domain;
+package org.fasttrackit.onlineshop.transfer.product;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity
-public class Product {
+public class ProductResponse {
 
-    @Id
-    @GeneratedValue
-    private long id;
+    private Long id;
 
-    @NotNull
     private String description;
-    @NotNull
+
     private Double price;
-    @NotNull
+
     private String name;
 
     private String imageUrl;
-    @NotNull
+
     private Integer quantity;
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Cart> carts = new HashSet<>();
-
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -78,32 +64,9 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Set<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(Set<Cart> carts) {
-        this.carts = carts;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        return id == product.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
-
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductResponse{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", price=" + price +
