@@ -1,6 +1,5 @@
 package org.fasttrackit.onlineshop.web;
 
-import org.fasttrackit.onlineshop.domain.Cart;
 import org.fasttrackit.onlineshop.service.CartService;
 import org.fasttrackit.onlineshop.transfer.cart.AddProductToCartRequest;
 import org.fasttrackit.onlineshop.transfer.cart.CartResponse;
@@ -13,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/carts")
+@CrossOrigin
 public class CartController {
 
     private final CartService cartService;
@@ -23,10 +23,10 @@ public class CartController {
     }
 
     @PutMapping
-    public ResponseEntity<Cart>addProductToCart(@RequestBody @Valid AddProductToCartRequest request){
-        Cart cart = cartService.addProductToCart(request);
+    public ResponseEntity<Void>addProductToCart(@RequestBody @Valid AddProductToCartRequest request){
+        cartService.addProductToCart(request);
 
-        return ResponseEntity.ok(cart);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{userId}")

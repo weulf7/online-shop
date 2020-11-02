@@ -15,7 +15,7 @@ public class Product {
     @GeneratedValue
     private long id;
 
-    @NotNull
+
     private String description;
     @NotNull
     private Double price;

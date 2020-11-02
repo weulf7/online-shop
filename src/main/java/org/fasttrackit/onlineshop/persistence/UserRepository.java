@@ -10,11 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 
-    Page<User> findByFirstNameContains(String partialFirstName, Pageable pageable);
-
-    Page<User> findByFirstNameContainsOrLastNameContains(String partialFirstName, String partialLastName, Pageable pageable);
-
-    Page<User> findByLastNameContains(String partialLastName, Pageable pageable);
+//    Page<User> findByFirstNameContains(String partialFirstName, Pageable pageable);
+//
+//    Page<User> findByFirstNameContainsOrLastNameContains(String partialFirstName, String partialLastName, Pageable pageable);
+//
+//    Page<User> findByLastNameContains(String partialLastName, Pageable pageable);
 
     @Query(value = "SELECT user FROM User user" +
             " WHERE (:partialFirstName IS NULL OR user.firstName LIKE %:partialFirstName%)" +
