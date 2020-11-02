@@ -1,4 +1,4 @@
-package org.fasttrackit.onlineshop.product;
+package org.fasttrackit.onlineshop.steps;
 
 import org.fasttrackit.onlineshop.service.ProductService;
 import org.fasttrackit.onlineshop.transfer.product.ProductResponse;
@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 
 @Component
-public class ProductStepSteps {
+public class ProductTestSteps {
 
     @Autowired
     private ProductService productService;

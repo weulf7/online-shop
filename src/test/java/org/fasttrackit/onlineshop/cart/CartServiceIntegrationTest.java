@@ -1,8 +1,8 @@
 package org.fasttrackit.onlineshop.cart;
 
 import org.fasttrackit.onlineshop.domain.User;
-import org.fasttrackit.onlineshop.product.ProductStepSteps;
 import org.fasttrackit.onlineshop.service.CartService;
+import org.fasttrackit.onlineshop.steps.ProductTestSteps;
 import org.fasttrackit.onlineshop.steps.UserTestSteps;
 import org.fasttrackit.onlineshop.transfer.cart.AddProductToCartRequest;
 import org.fasttrackit.onlineshop.transfer.cart.CartResponse;
@@ -27,7 +27,7 @@ public class CartServiceIntegrationTest {
     private UserTestSteps userTestSteps;
 
     @Autowired
-    private ProductStepSteps productStepSteps;
+    private ProductTestSteps productStepSteps;
 
 
     @Test
