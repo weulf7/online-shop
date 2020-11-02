@@ -1,9 +1,9 @@
-package org.fasttrackit.onlineshop.cart;
+package org.fasttrackit.onlineshop.integrationtest.cart;
 
 import org.fasttrackit.onlineshop.domain.User;
+import org.fasttrackit.onlineshop.integrationtest.steps.ProductTestSteps;
+import org.fasttrackit.onlineshop.integrationtest.steps.UserTestSteps;
 import org.fasttrackit.onlineshop.service.CartService;
-import org.fasttrackit.onlineshop.steps.ProductTestSteps;
-import org.fasttrackit.onlineshop.steps.UserTestSteps;
 import org.fasttrackit.onlineshop.transfer.cart.AddProductToCartRequest;
 import org.fasttrackit.onlineshop.transfer.cart.CartResponse;
 import org.fasttrackit.onlineshop.transfer.cart.ProductInCart;
@@ -26,14 +26,14 @@ public class CartServiceIntegrationTest {
     @Autowired
     private UserTestSteps userTestSteps;
 
-    @Autowired
-    private ProductTestSteps productStepSteps;
+    private ProductTestSteps productTestSteps;
+
 
 
     @Test
     public void addProductToCart_whenValidRequest_thenProductsAddedToCart() {
         User user = userTestSteps.createUser();
-        ProductResponse product = productStepSteps.createProduct();
+        ProductResponse product = productTestSteps.createProduct();
 
         AddProductToCartRequest request = new AddProductToCartRequest();
         request.setUserId(user.getId());
@@ -41,7 +41,7 @@ public class CartServiceIntegrationTest {
 
         cartService.addProductToCart(request);
 
-         CartResponse cart = cartService.getCart(request.getUserId());
+        CartResponse cart = cartService.getCart(request.getUserId());
 
         assertThat(cart,notNullValue());
         assertThat(cart.getId(),is(request.getUserId()));
